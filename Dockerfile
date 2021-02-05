@@ -1,6 +1,5 @@
 FROM  nvidia/cuda:10.1-cudnn7-devel-ubuntu16.04
 #FROM bit:5000/ubuntu18.04_cuda10.1_devel_cudnn7
-COPY ./torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl /tmp/
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
 ENV LC_ALL=C
@@ -86,7 +85,7 @@ RUN apt-get install -y --no-install-recommends software-properties-common && \
 RUN     mkdir ~/.pip && echo "[global]" > ~/.pip/pip.conf && \
         echo "index-url=https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf && \
         echo "format = columns" >> ~/.pip/pip.conf
-RUN pip --default-timeout=10000 install tensorboardX
+RUN pip --no-cache-dir --default-timeout=10000 install tensorboardX
 RUN pip --no-cache-dir install torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && \
     pip --no-cache-dir install torchvision==0.4.1
 
