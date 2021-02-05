@@ -86,7 +86,7 @@ RUN     mkdir ~/.pip && echo "[global]" > ~/.pip/pip.conf && \
         echo "index-url=https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf && \
         echo "format = columns" >> ~/.pip/pip.conf
 RUN pip --no-cache-dir --default-timeout=10000 install tensorboardX
-RUN pip --no-cache-dir install torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && \
+RUN cd /tmp && wget torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && pip --no-cache-dir install torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && \
     pip --no-cache-dir install torchvision==0.4.1
 
 
