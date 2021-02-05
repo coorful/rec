@@ -86,11 +86,9 @@ RUN apt-get install -y --no-install-recommends software-properties-common && \
 RUN     mkdir ~/.pip && echo "[global]" > ~/.pip/pip.conf && \
         echo "index-url=https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf && \
         echo "format = columns" >> ~/.pip/pip.conf
-
-RUN pip --default-timeout=10000 install \
-                tensorboardX &&\
-    cd /tmp/&& pip install torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && rm /tmp/torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && \
-    pip install torchvision==0.4.1
+RUN pip --default-timeout=10000 install tensorboardX
+RUN pip --no-cache-dir install torch-1.3.0-cp36-cp36m-manylinux1_x86_64.whl && \
+    pip --no-cache-dir install torchvision==0.4.1
 
 
 RUN pip install -i https://pypi.mirrors.ustc.edu.cn/simple/ --default-timeout=1000 --no-cache-dir wheel  setuptools scikit-learn  Cython  easydict   hickle  pyyaml  matplotlib \
